@@ -5,3 +5,5 @@
 2025-02-06 13:56:55,792 - INFO - Text cleaned: i love you @ but i cant carry forward this relationship
 2025-02-06 13:57:08,661 - INFO - Text analyzed: love cant carry forward relationship | Sentiment: Positive \U0001f60a
 2025-02-06 13:57:40,508 - INFO - CSV analyzed successfully. Column: Text
+2025-02-06 18:11:14,610 - INFO - Text analyzed: i love you so much | Sentiment: Positive \U0001f60a
+2025-02-06 18:11:38,727 - INFO - CSV analyzed successfully. Column: Text

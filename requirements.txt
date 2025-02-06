@@ -1,0 +1,8 @@
+pandas 
+numpy 
+textblob
+streamlit
+cleantext
+vaderSentiment.vaderSentiment
+plotly.express
+numpy 
