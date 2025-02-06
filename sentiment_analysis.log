@@ -1,0 +1,7 @@
+2025-02-06 13:52:14,467 - INFO - CSV analyzed successfully. Column: Text
+2025-02-06 13:53:23,714 - INFO - CSV analyzed successfully. Column: Text
+2025-02-06 13:53:49,945 - INFO - Text analyzed: i am feeling deprred and unhappy | Sentiment: Negative \U0001f621
+2025-02-06 13:56:24,125 - INFO - Text analyzed: love you | Sentiment: Positive \U0001f60a
+2025-02-06 13:56:55,792 - INFO - Text cleaned: i love you @ but i cant carry forward this relationship
+2025-02-06 13:57:08,661 - INFO - Text analyzed: love cant carry forward relationship | Sentiment: Positive \U0001f60a
+2025-02-06 13:57:40,508 - INFO - CSV analyzed successfully. Column: Text
