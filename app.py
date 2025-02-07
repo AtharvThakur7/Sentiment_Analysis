@@ -15,7 +15,7 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
 )
 
-# Initialize VADER Sentiment Analyzer
+# Initialize Sentiment Analyzer
 analyzer = SentimentIntensityAnalyzer()
 
 # Load Pretrained Sarcasm Detection Model (Optional)
@@ -26,28 +26,59 @@ except Exception as e:
     logging.error(f"Failed to load sarcasm model: {e}")
     use_sarcasm_model = False
 
-# Set Streamlit Page Configuration
-st.set_page_config(page_title="Sentiment Analysis", layout="wide")
+# Custom Theme & Styling
+st.set_page_config(page_title="Sentiment Analysis", layout="wide", page_icon="📝")
 
-st.title("📝 Sentiment Analysis App")
+st.markdown("""
+    <style>
+        body {
+            background-color: #f4f4f8;
+        }
+        .main-title {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            color: #FF6F61;
+        }
+        .stTextArea textarea {
+            font-size: 16px;
+            border-radius: 10px;
+            border: 2px solid #FF6F61;
+        }
+        .stButton>button {
+            background-color: #FF6F61;
+            color: white;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 18px;
+        }
+        .sentiment-box {
+            background-color: #FFF3E6;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #444;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+st.markdown('<h1 class="main-title">Sentiment Analysis App 💬</h1>', unsafe_allow_html=True)
 
 # ---------------- SARCASTIC TEXT DETECTION FUNCTION ----------------
 def detect_sarcasm(text):
-    """
-    Detects sarcasm using a combination of rule-based methods and a deep-learning model.
-    """
     sarcastic_patterns = [
-        r"oh\s*(wow|great|sure)",  # "Oh wow", "Oh great"
-        r"(yeah|sure|right),?\s*because",  # "Yeah, because that totally makes sense"
-        r"just\s*(love|hate)",  # "I just love waiting in line"
-        r"as\s*if",  # "As if that would ever work"
-        r"not\s+(like|that)",  # "Not like I was busy or anything"
+        r"oh\s*(wow|great|sure)",
+        r"(yeah|sure|right),?\s*because",
+        r"just\s*(love|hate)",
+        r"as\s*if",
+        r"not\s+(like|that)",
     ]
     
     if any(re.search(pattern, text, re.IGNORECASE) for pattern in sarcastic_patterns):
         return True
 
-    # Use deep learning model if available
     if use_sarcasm_model:
         prediction = sarcasm_detector(text)[0]
         return prediction["label"] == "sarcasm"
@@ -55,21 +86,22 @@ def detect_sarcasm(text):
     return False
 
 # ---------------- TEXT INPUT SENTIMENT ANALYSIS (REAL-TIME) ----------------
-with st.expander("🔍 Analyze Text"):
-    text = st.text_area("Enter text for sentiment analysis:", key="real_time_text")
+with st.sidebar:
+    st.subheader("🔍 Analyze Text")
+    text = st.text_area("Enter text for sentiment analysis:")
 
     if st.button("Analyze Sentiment"):
         if text:
             sarcasm_detected = detect_sarcasm(text)
 
-            # Real-time sentiment prediction with VADER
+            # Sentiment prediction with VADER
             sentiment_scores = analyzer.polarity_scores(text)
             compound_score = sentiment_scores["compound"]
 
             # Adjust sentiment if sarcasm is detected
             if sarcasm_detected:
                 sentiment = "Sarcastic 🧐"
-                compound_score = 0.0  # Neutralizing sarcastic sentiment as it often contradicts words
+                compound_score = 0.0
             elif compound_score >= 0.05:
                 sentiment = "Positive 😊"
             elif compound_score <= -0.05:
@@ -77,8 +109,8 @@ with st.expander("🔍 Analyze Text"):
             else:
                 sentiment = "Neutral 😐"
 
-            st.write("**Sentiment Score:**", round(compound_score, 2))
-            st.write("**Sentiment:**", sentiment)
+            st.markdown(f'<div class="sentiment-box">Sentiment Score: {round(compound_score, 2)}</div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="sentiment-box">Sentiment: {sentiment}</div>', unsafe_allow_html=True)
 
             logging.info(f"Text analyzed: {text} | Sentiment: {sentiment}")
 
@@ -86,7 +118,6 @@ with st.expander("🔍 Analyze Text"):
         words = text.split()
         word_sentiments = [(word, analyzer.polarity_scores(word)["compound"]) for word in words]
 
-        # Convert to DataFrame
         word_df = pd.DataFrame(word_sentiments, columns=["Word", "Sentiment Score"])
         word_df["Sentiment"] = word_df["Sentiment Score"].apply(
             lambda x: 'Positive 😊' if x > 0.05 else ('Negative 😡' if x < -0.05 else 'Neutral 😐')
@@ -131,7 +162,7 @@ with st.expander("📂 Analyze CSV"):
                 if st.button("Analyze CSV"):
                     def vader_score(text):
                         if detect_sarcasm(str(text)):
-                            return 0.0  # Neutralize sarcasm sentiment
+                            return 0.0
                         scores = analyzer.polarity_scores(str(text))
                         return scores['compound']
 
@@ -159,4 +190,3 @@ with st.expander("📂 Analyze CSV"):
         except Exception as e:
             st.error("⚠️ An error occurred while processing the CSV file.")
             logging.error(f"Error in CSV processing: {e}")
-
