@@ -66,7 +66,7 @@ st.markdown("""
 
 st.markdown('<h1 class="main-title">Sentiment Analysis App 💬</h1>', unsafe_allow_html=True)
 
-# ---------------- SARCASTIC TEXT DETECTION FUNCTION ----------------
+# TODO: SARCASTIC TEXT DETECTION FUNCTION 
 def detect_sarcasm(text):
     sarcastic_patterns = [
         r"oh\s*(wow|great|sure)",
@@ -114,7 +114,7 @@ with st.sidebar:
 
             logging.info(f"Text analyzed: {text} | Sentiment: {sentiment}")
 
-        # ------------------- Word-Level Sentiment Analysis -------------------
+        #  TODO: Word-Level Sentiment Analysis 
         words = text.split()
         word_sentiments = [(word, analyzer.polarity_scores(word)["compound"]) for word in words]
 
@@ -141,7 +141,7 @@ with st.sidebar:
             st.error("⚠️ An error occurred while cleaning text.")
             logging.error(f"Error in text cleaning: {e}")
 
-# ---------------- CSV UPLOAD & SENTIMENT ANALYSIS ----------------
+# TODO:  CSV UPLOAD & SENTIMENT ANALYSIS 
 with st.expander("📂 Analyze CSV"):
     upl = st.file_uploader("Upload a CSV or Excel file", type=['csv', 'xlsx'])
 
@@ -190,3 +190,7 @@ with st.expander("📂 Analyze CSV"):
         except Exception as e:
             st.error("⚠️ An error occurred while processing the CSV file.")
             logging.error(f"Error in CSV processing: {e}")
+
+
+
+

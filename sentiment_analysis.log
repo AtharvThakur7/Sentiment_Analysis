@@ -147,3 +147,9 @@ If this is a private repository, make sure to pass a token having permission to 
 2025-02-07 18:29:14,617 - ERROR - Failed to load sarcasm model: mvanvo/sarcasm-detector is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
 If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `huggingface-cli login` or by passing `token=<your_token>`
 2025-02-07 18:29:17,677 - INFO - CSV analyzed successfully. Column: Text
+2025-02-07 18:35:02,325 - ERROR - Failed to load sarcasm model: mvanvo/sarcasm-detector is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `huggingface-cli login` or by passing `token=<your_token>`
+2025-02-07 18:35:34,463 - ERROR - Failed to load sarcasm model: mvanvo/sarcasm-detector is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `huggingface-cli login` or by passing `token=<your_token>`
+2025-02-07 19:16:40,856 - ERROR - Failed to load sarcasm model: mvanvo/sarcasm-detector is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `huggingface-cli login` or by passing `token=<your_token>`
