@@ -88,16 +88,7 @@ def detect_sarcasm(text):
 
 
 
-# Voice Input Function
-def recognize_speech():
-    recognizer = sr.Recognizer()
-    with sr.Microphone() as source:
-        st.write("🎙️ Speak now...")
-        audio = recognizer.listen(source)
-    try:
-        return recognizer.recognize_google(audio)
-    except:
-        return "Could not understand."
+
 
 # ---------------- TEXT INPUT SENTIMENT ANALYSIS (REAL-TIME) ----------------
 with st.sidebar:
@@ -156,17 +147,7 @@ with st.sidebar:
             logging.error(f"Error in text cleaning: {e}")
 
 
-    # voice 
-    st.subheader("🎙️ Voice Input for Sentiment Analysis")
-    if st.button("Use Voice Input"):
-        text = recognize_speech()
-        st.write("You said:", text)
-        if text:
-            sentiment_scores = analyzer.polarity_scores(text)
-            compound_score = sentiment_scores["compound"]
-            sentiment = "Positive 😊" if compound_score >= 0.05 else "Negative 😡" if compound_score <= -0.05 else "Neutral 😐"
-            st.markdown(f'<div class="sentiment-box">Sentiment Score: {round(compound_score, 2)}</div>', unsafe_allow_html=True)
-            st.markdown(f'<div class="sentiment-box">Sentiment: {sentiment}</div>', unsafe_allow_html=True)        
+    
 
    
 
