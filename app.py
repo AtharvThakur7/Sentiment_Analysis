@@ -67,11 +67,6 @@ st.markdown("""
 
 st.markdown('<h1 class="main-title">Sentiment Analysis App 💬</h1>', unsafe_allow_html=True)
 
-
-
-
-
-
 # TODO: SARCASTIC TEXT DETECTION FUNCTION 
 def detect_sarcasm(text):
     sarcastic_patterns = [
@@ -246,7 +241,6 @@ with st.expander("📂 Analyze CSV"):
         except Exception as e:
             st.error("⚠️ An error occurred while processing the CSV file.")
             logging.error(f"Error in CSV processing: {e}")
-
 
 
 
