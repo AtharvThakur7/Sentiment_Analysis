@@ -7,7 +7,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import plotly.express as px
 import re
 from transformers import pipeline
-import speech_recognition as sr
+
 
 # Configure logging
 logging.basicConfig(
