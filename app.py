@@ -7,7 +7,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import plotly.express as px
 import re
 from transformers import pipeline
-
+import speech_recognition as sr
 
 # Configure logging
 logging.basicConfig(
@@ -145,6 +145,11 @@ with st.sidebar:
         except Exception as e:
             st.error("⚠️ An error occurred while cleaning text.")
             logging.error(f"Error in text cleaning: {e}")
+
+
+
+
+             
 
 
     

@@ -7,4 +7,4 @@ textblob==0.19.0
 transformers==4.48.3
 vaderSentiment==3.3.2
 vaderSentiment==3.3.2
-
+# PyAudio ==0.2.14

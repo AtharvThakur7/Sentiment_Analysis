@@ -9,11 +9,11 @@ ENV PYTHONDONTWRITEBYTECODE=1
 WORKDIR /app
 
 # Install system dependencies (for libraries like SpeechRecognition, etc.)
-RUN apt-get update && apt-get install -y \
-    gcc \
-    libpq-dev \
-    libsndfile1 \
-    && rm -rf /var/lib/apt/lists/*
+# RUN apt-get update && apt-get install -y \
+#     gcc \
+#     libpq-dev \
+#     libsndfile1 \
+#     && rm -rf /var/lib/apt/lists/*
 
 # Copy the requirements file first (for caching)
 COPY requirements.txt /app/
@@ -29,4 +29,4 @@ COPY . /app/
 EXPOSE 8501
 
 # Command to run the Streamlit app
-CMD ["streamlit", "run", "your_script.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
